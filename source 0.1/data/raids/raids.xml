@@ -1,0 +1,39 @@
+<raids>
+<!-- Raids: -->
+<raid name="Shiny Charizard" file="charizard.xml" chance="2" interval2="15" margin="0" /> Each 15 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Charizard2" file="charizard2.xml" chance="2" interval2="9" margin="0" /> Each 9 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Charizard3" file="charizard3.xml" chance="2" interval2="9" margin="0" /> Each 9 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Charizard4" file="charizard4.xml" chance="2" interval2="9" margin="0" /> Each 9 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Charizard5" file="charizard5.xml" chance="2" interval2="9" margin="0" /> Each 9 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata" file="rattata.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata2" file="rattata2.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata3" file="rattata3.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata4" file="rattata4.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata5" file="rattata5.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata6" file="rattata6.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata7" file="rattata7.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata8" file="rattata8.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata9" file="rattata9.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Rattata10" file="rattata10.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Moltres" file="moltres.xml" chance="1" interval2="1" margin="0" /> Each 45 minutes there is a 1% chance that the raid is executed... />
+<raid name="Zapdos" file="zapdos.xml" chance="100" interval2="1" margin="0" /> Each 45 minutes there is a 100% chance that the raid is executed... />
+<raid name="Articuno" file="articuno.xml" chance="3" interval2="45" margin="0" /> Each 45 minutes there is a 3% chance that the raid is executed... />
+<raid name="Shiny Oddish" file="oddish.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat" file="zubat.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras" file="paras.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Oddish2" file="oddish2.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat2" file="zubat2.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras2" file="paras2.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Oddish3" file="oddish3.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat3" file="zubat3.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras3" file="paras3.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Oddish4" file="oddish4.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat4" file="zubat4.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras4" file="paras4.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Oddish5" file="oddish5.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat5" file="zubat5.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras5" file="paras5.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Oddish6" file="oddish6.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Zubat6" file="zubat6.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+<raid name="Shiny Paras6" file="paras6.xml" chance="2" interval2="3" margin="0" /> Each 3 minutes there is a 2% chance that the raid is executed... />
+</raids>

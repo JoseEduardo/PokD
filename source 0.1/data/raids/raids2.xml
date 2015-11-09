@@ -1,0 +1,17 @@
+<raids>
+<!-- Raids: -->
+<raid name="Mew" file="Mew.xml" chance="0" interval2="60" margin="0" /> Each 60 minutes there is a 50% chance that the raid is executed... />
+<raid name="Mewtwo" file="Mewtwo.xml" chance="0" interval2="60" margin="0" /> Each 60 minutes there is a 50% chance that the raid is executed... />
+<raid name="Zapdos" file="Zapdos.xml" chance="0" interval2="30" margin="0" /> Each 30 minutes there is a 50% chance that the raid is executed... />
+<raid name="Articuno" file="Articuno.xml" chance="0" interval2="30" margin="0" /> Each 30 minutes there is a 50% chance that the raid is executed... />
+<raid name="Moltres" file="Moltres.xml" chance="0" interval2="30" margin="0" /> Each 30 minutes there is a 50% chance that the raid is executed... />
+<raid name="Crystal Onix" file="Crystal Onix.xml" chance="25" interval2="30" margin="0" /> Each 30 minutes there is a 25% chance that the raid is executed... />
+<raid name="Moltres" file="moltres1.xml" chance="5" interval2="120" margin="0" /> Each 120 minutes there is a 5% chance that the raid is executed... />
+<raid name="Moltres" file="moltres2.xml" chance="5" interval2="120" margin="0" /> Each 120 minutes there is a 5% chance that the raid is executed... />
+<raid name="Moltres" file="moltres3.xml" chance="5" interval2="120" margin="0" /> Each 120 minutes there is a 5% chance that the raid is executed... />
+<raid name="Shiny Charizard" file="charizard.xml" chance="25" interval2="60" margin="0" /> Each 60 minutes there is a 25% chance that the raid is executed... />
+<raid name="Shiny Charizard" file="charizard1.xml" chance="20" interval2="60" margin="0" /> Each 60 minutes there is a 20% chance that the raid is executed... />
+<raid name="Shiny Charizard" file="charizard2.xml" chance="20" interval2="60" margin="0" /> Each 60 minutes there is a 20% chance that the raid is executed... />
+<raid name="Shiny Charizard" file="charizard3.xml" chance="15" interval2="60" margin="0" /> Each 60 minutes there is a 15% chance that the raid is executed... />
+<raid name="Shiny Charizard" file="charizard4.xml" chance="20" interval2="60" margin="0" /> Each 60 minutes there is a 20% chance that the raid is executed... />
+</raids>

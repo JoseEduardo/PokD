@@ -1,0 +1,20 @@
+General:
+It's named Dugtrio (earth).
+Can be used at level 35.
+
+Status:
+It's base health is 3500.
+It gains 110 life/level.
+
+Moves used:
+Sand Attack (Earth) - m1 - level 35 
+Slash - m2 (Normal) - level 35 
+Mud Shot(Earth) - m3 - level 35 
+Mud Slap (Earth) - m4 - level 35 
+Earthshock (Earth) - m5 - level 35 
+Shockwave (Earth) - m6 - level 40 - earth
+Earthquake - m7 - level 42 - earth
+Rage - m8 - level 45 - dragon
+
+Habilities:
+Dig (use order somewhere to cave)

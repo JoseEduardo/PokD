@@ -1,0 +1,131 @@
+
+--vaporeon
+--chansey
+-- nidoking
+--nidoquen
+--nidoran male
+--nidoran female
+--kabuto
+--kabutops
+--aerodactyl
+--scyther
+--pinsir
+--magmar
+--rapidash
+-- ponyta
+--ninetales
+--vulpix
+--growlithe -- 20 \/
+--arcanine
+--charizard
+--charmeleon
+--charmander
+--persian
+--kingler
+--grimer
+--muk
+--electabuzz
+--exeggcute
+--exggutor
+-- abra
+--drowzee
+--hypno
+--kadabra
+-- alakazam
+--jynx
+--dragonite
+--dragonair
+--dratini --- 20 \/
+--dewgong
+--cloyster
+--seel
+--venonat
+--parasect
+--dodrio
+--doduo
+--tauros
+-- arbok
+--victreebel
+-- raichu
+--blastoise
+--golem
+-- snorlax
+-- vileplume
+--clefable
+-- clefairy
+--venomoth
+--psyduck
+--pikachu -- 20 \/
+-- magneton
+--magnemite
+--voltorb
+-- venusaur
+--bulbasaur
+--ivysaur
+--starmie
+--staryu
+--haunter
+--gengar
+-- gastly
+-- paras
+--wartortle
+--squirtle
+--meowth
+--slowbro
+-- tangela
+--weepinbell
+--gloom
+--bellsprout 20 \/
+--marowak
+--cubone
+-- zubat
+--golbat
+--slowpoke
+--shellder
+--weezing
+--koffing
+--rhyhorn
+--Ekans
+--arbok
+--rhydon
+--caterpie
+-- weedle
+-- tauros
+-- metapod
+-- pidgey
+--pidgeotto
+--pidgeot
+-- primeape --20 \/
+--mankey
+--oddish
+--fearow
+--spearrow
+-- rattata
+-- raticate
+--beedrill
+-- kakuna
+--butterfree
+--sandshrew
+--sandslash
+--diglett      
+--dugtrio
+--geodude
+--machop
+--machoke
+--machamp
+-- graveleer
+--golem
+--onix
+
+--fishing
+
+tentacool    --10 \/
+tentacruel
+seadra
+Poliwrath
+Poliwhirl
+magikarp
+krabby
+goldeen
+poliwag
+horsea
