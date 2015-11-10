@@ -1,61 +1,42 @@
-local combat1 = createCombatObject()
-setCombatParam(combat1, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat1, COMBAT_PARAM_EFFECT, 3)
-setCombatParam(combat1, COMBAT_PARAM_DISTANCEEFFECT, 25)
-
-local combat2 = createCombatObject()
-setCombatParam(combat2, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat2, COMBAT_PARAM_EFFECT, 3)
-setCombatParam(combat2, COMBAT_PARAM_DISTANCEEFFECT, 25)
-
-local combat3 = createCombatObject()
-setCombatParam(combat3, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat3, COMBAT_PARAM_EFFECT, 3)
-setCombatParam(combat3, COMBAT_PARAM_DISTANCEEFFECT, 25)
-
-local function onCastSpell1(parameters)
-    doCombat(parameters.cid, parameters.combat1, parameters.var)
-   	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), parameters.element,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		local namezito = getCreatureName(pk)
+		local namezin = getCreatureName(getMasterTarget(pk))
+		local function pee(params)
+			if isCreature(params.pid) then
+				if isCreature(getMasterTarget(params.pid)) then
+					if getCreatureName(params.pid) == namezito then
+						if getCreatureName(getMasterTarget(params.pid)) == namezin then
+							doSendDistanceShoot(getThingPos(params.pid), getThingPos(params.pid), 15)
+							doAreaCombatHealth(params.pid, element, getThingPos(getMasterTarget(params.pid)), 0, -min, -max, 3)
+						end
+					end
+				end
+			end
+		end
+		local delay = 200
+		randnee = math.random(1,100)
+		if randnee >= 1 and randnee <= 37 then
+			a = 2
+		elseif randnee >= 38 and randnee <= 74 then
+			a = 3
+		elseif randnee >= 75 and randnee <= 88 then
+			a = 4
+		else
+			a = 5
+		end
+		local times = a
+		for i = 1,a do
+			addEvent(pee, delay, {pid = pk})
+			delay = delay + 600
+		end
+		local function msg(params)
+			if isCreature(params.pid) then
+				doSendAnimatedText(getThingPos(params.pid), ""..times.." HITS", 35)
+			end
+		end
+		addEvent(msg, 580*a, {pid = pk})
+	return true;
 end
-
-local function onCastSpell2(parameters)
-    doCombat(parameters.cid, parameters.combat2, parameters.var)
-   	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), parameters.element,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
-
-local function onCastSpell3(parameters)
-    doCombat(parameters.cid, parameters.combat3, parameters.var)
-   	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), parameters.element,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
-
-
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 100 --- 1 dano
-num2 = 150 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-local parameters = { cid = cid, num1 = num1, num2 = num2, num3 = num3, num4 =num4, element = element, var = numberToVariant(getCreatureTarget(cid)), combat1 = combat1, combat2 = combat2, combat3 = combat3, }
-addEvent(onCastSpell1, 0, parameters)    
-addEvent(onCastSpell2, 300, parameters)       
-addEvent(onCastSpell3, 600, parameters)
-return true
-end
-
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 100 --- 1 dano
-num2 = 150 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-
-local parameters = { cid = cid, num1 = num1, num2 = num2, num3 = num3, num4 =num4, element = element, var = numberToVariant(getCreatureTarget(cid)), combat1 = combat1, combat2 = combat2, combat3 = combat3, }
-addEvent(onCastSpell1, 0, parameters)    
-addEvent(onCastSpell2, 300, parameters)       
-addEvent(onCastSpell3, 600, parameters)
-end
-
-

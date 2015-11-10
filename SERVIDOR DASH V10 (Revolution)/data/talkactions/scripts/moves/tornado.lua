@@ -1,75 +1,20 @@
-local acombat1 = createCombatObject()
-
-local combat1 = createCombatObject()
-setCombatParam(combat1, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat1, COMBAT_PARAM_EFFECT, 42)
-setCombatParam(combat1, COMBAT_PARAM_DISTANCEEFFECT, 22)
-setCombatFormula(combat1, COMBAT_FORMULA_LEVELMAGIC, -0.3, 0, -0.4, 0) 
-
-arr1 = {
-{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-{0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0},
-{0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0},
-{0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0},
-{0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
-{1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-{0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
-{0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0},
-{0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0},
-{0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0},
-{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-}
- 
-local area1 = createCombatArea(arr1)
-setCombatArea(acombat1, area1)
-
-function onTargetTile(cid, pos)
-    doCombat(cid,combat1,positionToVariant(pos))
-end
-
-
-setCombatCallback(acombat1, CALLBACK_PARAM_TARGETTILE, "onTargetTile")
-
-
-local function onCastSpell1(parameters)
-    doCombat(parameters.cid, acombat1, parameters.var)
-doAreaCombatHealth(parameters.cid, FLYDAMAGE, getCreaturePosition(parameters.cid), area1,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
- 
- 
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-num1 = 1200 --- 1 dano
-num2 = 1800 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-
-local parameters = { cid = cid, num1 = num1, num2 = num2, level = level, num3 = num3, num4 =num4, var = numberToVariant(cid)}
-addEvent(onCastSpell1, 100, parameters)
-
-return true
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-element = POISONDAMAGE
-num1 = 1200 --- 1 dano
-num2 = 1800 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-num1 = 1200 --- 1 dano
-num2 = 1800 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-end
-
-local parameters = { cid = cid, num1 = num1, num2 = num2, level = level, num3 = num3, num4 =num4, var = numberToVariant(cid)}
-addEvent(onCastSpell1, 100, parameters)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		posit = getThingPos(pk)
+		local function tornado(params)
+			if isCreature(params.pid) then
+				doAreaCombatHealth(params.pid, params.el, posit, params.ar, -min, -max, params.ef)
+			else
+			end
+		end
+		addEvent(tornado, 0, {pid = pk, ef = 42, ar = tor1, el = element})
+		addEvent(tornado, 500, {pid = pk, ef = 42, ar = tor2, el = element})
+		addEvent(tornado, 1000, {pid = pk, ef = 42, ar = tor3, el = element})
+		addEvent(tornado, 500, {pid = pk, ef = CONST_ME_POFF, ar = tor1, el = null})
+		addEvent(tornado, 1200, {pid = pk, ef = CONST_ME_POFF, ar = tor2, el = null})
+		addEvent(tornado, 1900, {pid = pk, ef = CONST_ME_POFF, ar = tor2, el = null})
+		addEvent(tornado, 1900, {pid = pk, ef = CONST_ME_POFF, ar = tor3, el = null})
+	return true;
 end

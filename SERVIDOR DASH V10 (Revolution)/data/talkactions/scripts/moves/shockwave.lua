@@ -1,186 +1,40 @@
-
-local function eff(cid,uid,n,old,effect) 
-    local interval = 0.5*1000  
-      if isCreature(uid) == false or n == 10 then
-      return false
-    end
-      doSendMagicEffect(getCreaturePosition(uid), effect)
-      n = n+1
-    addEvent(rot, interval,cid,uid,n,old, effect)
-    end
-
-local combat, areadano, effect, dir, area = {}, {}, {126, 124, 125, 123}, {[0] = {1}, [1] = {2}, [2] = {3}, [3] = {4}}, {
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-}
-local combat2, areadano2, effect2, dir2, area2 = {}, {}, {126, 124, 125, 123}, {[0] = {1}, [1] = {2}, [2] = {3}, [3] = {4}}, {
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-}
-
-	for i = 1, 4 do
-    local condition = createConditionObject(CONDITION_DRUNK)
-		table.insert(combat, createCombatObject())
-		table.insert(areadano, createCombatArea(area[i]))
-		setCombatParam(combat[i], COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-		setCombatParam(combat[i], COMBAT_PARAM_EFFECT,effect[i] )
-        setCombatParam(combat[i], COMBAT_PARAM_AGGRESSIVE, true)
-		setCombatArea(combat[i], createCombatArea(area[i]))
-        setConditionParam(condition, CONDITION_PARAM_TICKS, 10000)
-        setCombatCondition(combat[i], condition)		
-
-    local condition2 = createConditionObject(CONDITION_DRUNK)
-		table.insert(combat2, createCombatObject())
-		table.insert(areadano2, createCombatArea(area2[i]))
-		setCombatParam(combat2[i], COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-		setCombatParam(combat2[i], COMBAT_PARAM_EFFECT,effect2[i] )
-        setCombatParam(combat2[i], COMBAT_PARAM_AGGRESSIVE, true)
-		setCombatArea(combat2[i], createCombatArea(area2[i]))
-        setConditionParam(condition2, CONDITION_PARAM_TICKS, 10000)
-        setCombatCondition(combat2[i], condition2)
-	end
-function closee1(parameters)
-		local d = getCreatureLookDirection(parameters.cid)
-		doCombat(parameters.cid, parameters.combat2[parameters.dir2[d][1]], numberToVariant(parameters.cid)) 
-		doAreaCombatHealth(parameters.cid, GROUNDLDAMAGE, getCreaturePosition(parameters.cid), parameters.areadano2[parameters.dir2[d][1]], -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), parameters.num4)
-end
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 750 --- 1 dano
-num2 = 900 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-parameters = {cid=cid, combat2 = combat2, dir2 = dir2, areadano2 = areadano2, level = level, num1 = num1, num2 = num2, num3 = num3, num4 = num4}
-addEvent(closee1, 200, parameters)
-		local d = getCreatureLookDirection(cid)
-		doCombat(cid, combat[dir[d][1]], numberToVariant(cid)) 
-		doAreaCombatHealth(cid, GROUNDDAMAGE, getCreaturePosition(cid), areadano[dir[d][1]], -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
-        for i = 1, 10 do
-         addEvent(eff, 0.5*1000,cid,getCreatureTarget(cid),1,getCreaturePosition(cid), 34)
-       end
-	return true
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-element = POISONDAMAGE
-num1 = 800 --- 1 dano
-num2 = 1000 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 750 --- 1 dano
-num2 = 900 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-end
-
-parameters = {cid=cid, combat2 = combat2, dir2 = dir2, areadano2 = areadano2, level = level, num1 = num1, num2 = num2, num3 = num3, num4 = num4}
-addEvent(closee1, 200, parameters)
-		local d = getCreatureLookDirection(cid)
-		doCombat(cid, combat[dir[d][1]], numberToVariant(cid)) 
-		doAreaCombatHealth(cid, GROUNDDAMAGE, getCreaturePosition(cid), areadano[dir[d][1]], -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
-        for i = 1, 10 do
-         addEvent(eff, 0.5*1000,cid,getCreatureTarget(cid),1,getCreaturePosition(cid), 34)
-       end
-	return true
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		posit = getThingPos(pk)
+		local function sandattack(params)
+			if isCreature(params.pid) then
+				doAreaCombatHealth(params.pid, null, params.ar, 0, -min, -max, params.ef)
+				doAreaCombatHealth(params.pid, element, params.ar, params.wave, -min, -max, 255)
+			else
+			end
+		end
+		local posicao = getThingPos(pk)
+		if getCreatureLookDir(pk) == 0 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-1, z=posicao.z}, ef = 126, wave = swaven})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-2, z=posicao.z}, ef = 126, wave = swaven})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-3, z=posicao.z}, ef = 126, wave = swaven})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-4, z=posicao.z}, ef = 126, wave = swaven})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-5, z=posicao.z}, ef = 126, wave = swaven})
+		elseif getCreatureLookDir(pk) == 2 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+2, z=posicao.z}, ef = 125, wave = swaves})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+3, z=posicao.z}, ef = 125, wave = swaves})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+4, z=posicao.z}, ef = 125, wave = swaves})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+5, z=posicao.z}, ef = 125, wave = swaves})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+6, z=posicao.z}, ef = 125, wave = swaves})
+		elseif getCreatureLookDir(pk) == 1 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+2, y=posicao.y+1, z=posicao.z}, ef = 124, wave = swavee})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+3, y=posicao.y+1, z=posicao.z}, ef = 124, wave = swavee})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+4, y=posicao.y+1, z=posicao.z}, ef = 124, wave = swavee})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+5, y=posicao.y+1, z=posicao.z}, ef = 124, wave = swavee})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+6, y=posicao.y+1, z=posicao.z}, ef = 124, wave = swavee})
+		elseif getCreatureLookDir(pk) == 3 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+1, z=posicao.z}, ef = 123, wave = swavew})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-2, y=posicao.y+1, z=posicao.z}, ef = 123, wave = swavew})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-3, y=posicao.y+1, z=posicao.z}, ef = 123, wave = swavew})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-4, y=posicao.y+1, z=posicao.z}, ef = 123, wave = swavew})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-5, y=posicao.y+1, z=posicao.z}, ef = 123, wave = swavew})
+		end
+	return true;
 end

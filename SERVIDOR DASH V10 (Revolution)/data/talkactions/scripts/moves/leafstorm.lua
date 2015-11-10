@@ -1,55 +1,17 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE,COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 79)
-
-arr = {
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
-{0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0},
-{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-{1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-{0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0},
-{0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-}
-
-local area = createCombatArea(arr)
-setCombatArea(combat, area)
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = GRASSDAMAGE
-num1 = 1000 --- 1 dano
-num2 = 1500 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-    return doCombat(cid, combat, numberToVariant(cid)) and
-	doAreaCombatHealth(cid, element, getCreaturePosition(cid), area, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-element = GRASSDAMAGE
-num1 = 1100 --- 1 dano
-num2 = 1800 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-element = GRASSDAMAGE
-num1 = 1000 --- 1 dano
-num2 = 1500 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-end
-    return doCombat(cid, combat, numberToVariant(cid)) and
-	doAreaCombatHealth(cid, element, getCreaturePosition(cid), area, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		addEvent(doAreaCombatHealth, 0, pk, element, getThingPos(pk), grassarea, -min, -max, 255)
+		local function shoot(params)
+			lugar = getThingPos(params.pid)
+			for x= -7,7 do
+				for y= -6,6 do
+				topos = {x=lugar.x+x, y=lugar.y+y, z=lugar.z}
+				doSendDistanceShoot(getThingPos(params.pid), topos, 8)
+				end
+			end
+		end
+		addEvent(shoot, 0, {pid = pk})
+	return true;
 end

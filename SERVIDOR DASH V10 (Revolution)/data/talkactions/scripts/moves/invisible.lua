@@ -1,11 +1,15 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_MAGIC_RED)
-setCombatParam(combat, COMBAT_PARAM_AGGRESSIVE, false)
-
-local condition = createConditionObject(CONDITION_INVISIBLE)
-setConditionParam(condition, CONDITION_PARAM_TICKS, 4000)
-setCombatCondition(combat, condition)
-
-function onSay(cid)
-	return doCombat(cid, combat, numberToVariant(cid))
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		doDisapear(pk)
+		doSendMagicEffect(getThingPosWithDebug(pk), 134)
+		if isMonster(pk) then
+			local pos = getThingPosWithDebug(pk)                           --alterei!
+			doTeleportThing(pk, {x=4, y=3, z=10}, false)
+			doTeleportThing(pk, pos, false)
+		end
+		addEvent(doAppear, 4000, pk)
+		
+	return true;
 end

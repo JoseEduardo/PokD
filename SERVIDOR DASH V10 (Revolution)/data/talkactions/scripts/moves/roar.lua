@@ -1,14 +1,7 @@
-function removiR(params)
-if not isCreature(params.target) then
-return true
-end
-    setPlayerStorageValue(params.target, 84147, 0)
-end
-
-function onSay(cid)
-local target = getCreatureTarget(cid)
-	registerCreatureEvent(target, "Fear")
-    setPlayerStorageValue(target, 84147, 1)
-    params = {cid=cid, target=target}
-    addEvent(removiR, 5000, params)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		doAreaCombatHealth(pk, element, getThingPos(getMasterTarget(pk)), 0, -min, -max, 2)
+	return true;
 end

@@ -1,80 +1,80 @@
-local sand1 = createCombatArea{
-{0, 0, 0}, 
-{0, 3, 0}, 
-{0, 0, 0}, 
-}
-
-local whirl3 = createCombatArea{
-{0, 0, 0}, 
-{1, 3, 1}, 
-{0, 0, 0}, 
-}
-
-function onSay(cid, var)
-	if getPlayerStorageValue(cid, 3) >= 1 then
-	doSendAnimatedText(getThingPos(cid), "MISS", 215)
-	setPlayerStorageValue(cid, 3, -1)
-	return true
-	end
-	if getPlayerStorageValue(cid, 5) >= 1 then
-		if math.random(1,100) <= 33 then
-		doSendAnimatedText(getThingPos(cid), "SELF HIT", 180)
-			if isPlayer(getCreatureTarget(cid)) then
-			huah = getDamagePoke(cid, FALSE)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		posit = getThingPos(pk)
+		local function sandattack(params)
+			if #getCreatureSummons(params.pid) >= 1 then
+				doAreaCombatHealth(params.pid, null, params.ar, 0, -min, -max, params.ef)
+				doAreaCombatHealth(params.pid, element, params.ar, params.wave, -min, -max, 255)
 			else
-			huah = getDamagePoke(cid, FALSE)
 			end
-     
-		local levels = huah
-		doTargetCombatHealth(getCreatureTarget(cid), cid, COMBAT_PHYSICALDAMAGE, -(math.random((levels*3),(levels*5))), -((math.random((levels*3),(levels*5))+10)), 3)
-		return true
 		end
-	end
-
-local pokeN = pokeOut[getCreatureOutfit(cid).lookType]
-if pokeN == "Aerodactyl" then
-jjj = 690
-else
-jjj = 550
-end
-local j = jjj
-		local function gust(params)
-		if isCreature(params.cid) then
-		doAreaCombatHealth(cid, null, params.ar, sand1, -0, -0, params.eee)
-		doAreaCombatHealth(cid, ROCKDAMAGE, params.ar, whirl3, -(j), -(j+120), 236) --236
-		doAreaCombatHealth(cid, null, params.arr, whirl3, -0, -0, 236)
-		else
-		end
-		end
-		local posicao = getThingPos(cid)
-		if getCreatureLookDir(cid) == 0 then
-		addEvent(gust, 0, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-1, z=posicao.z}, arr = posicao})
-		addEvent(gust, 300, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-2, z=posicao.z}, arr = {x=posicao.x, y=posicao.y-1, z=posicao.z}})
-		addEvent(gust, 600, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-3, z=posicao.z}, arr = {x=posicao.x, y=posicao.y-2, z=posicao.z}})
-		addEvent(gust, 900, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-4, z=posicao.z}, arr = {x=posicao.x, y=posicao.y-3, z=posicao.z}})
-		addEvent(gust, 1200, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-5, z=posicao.z}, arr = {x=posicao.x, y=posicao.y-4, z=posicao.z}})
-		addEvent(gust, 1500, {cid = cid, eee = 126, ar = {x=posicao.x, y=posicao.y-6, z=posicao.z}, arr = {x=posicao.x, y=posicao.y-5, z=posicao.z}})
-		elseif getCreatureLookDir(cid) == 2 then
-		addEvent(gust, 0, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+1, z=posicao.z}, arr = posicao})
-		addEvent(gust, 300, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+2, z=posicao.z}, arr = {x=posicao.x, y=posicao.y+1, z=posicao.z}})
-		addEvent(gust, 600, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+3, z=posicao.z}, arr = {x=posicao.x, y=posicao.y+2, z=posicao.z}})
-		addEvent(gust, 900, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+4, z=posicao.z}, arr = {x=posicao.x, y=posicao.y+3, z=posicao.z}})
-		addEvent(gust, 1200, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+5, z=posicao.z}, arr = {x=posicao.x, y=posicao.y+4, z=posicao.z}})
-		addEvent(gust, 1500, {cid = cid, eee = 125, ar = {x=posicao.x, y=posicao.y+6, z=posicao.z}, arr = {x=posicao.x, y=posicao.y+5, z=posicao.z}})
-		elseif getCreatureLookDir(cid) == 1 then
-		addEvent(gust, 0, {cid = cid, eee = 124, ar = {x=posicao.x+1, y=posicao.y, z=posicao.z}, arr = posicao})
-		addEvent(gust, 300, {cid = cid, eee = 124, ar = {x=posicao.x+2, y=posicao.y, z=posicao.z}, arr = {x=posicao.x+1, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 600, {cid = cid, eee = 124, ar = {x=posicao.x+3, y=posicao.y, z=posicao.z}, arr = {x=posicao.x+2, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 900, {cid = cid, eee = 124, ar = {x=posicao.x+4, y=posicao.y, z=posicao.z}, arr = {x=posicao.x+3, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 1200, {cid = cid, eee = 124, ar = {x=posicao.x+5, y=posicao.y, z=posicao.z}, arr = {x=posicao.x+4, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 1500, {cid = cid, eee = 124, ar = {x=posicao.x+6, y=posicao.y, z=posicao.z}, arr = {x=posicao.x+5, y=posicao.y, z=posicao.z}})
-		elseif getCreatureLookDir(cid) == 3 then
-		addEvent(gust, 0, {cid = cid, eee = 123, ar = {x=posicao.x-1, y=posicao.y, z=posicao.z}, arr = posicao})
-		addEvent(gust, 300, {cid = cid, eee = 123, ar = {x=posicao.x-2, y=posicao.y, z=posicao.z}, arr = {x=posicao.x-1, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 600, {cid = cid, eee = 123, ar = {x=posicao.x-3, y=posicao.y, z=posicao.z}, arr = {x=posicao.x-2, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 900, {cid = cid, eee = 123, ar = {x=posicao.x-4, y=posicao.y, z=posicao.z}, arr = {x=posicao.x-3, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 1200, {cid = cid, eee = 123, ar = {x=posicao.x-5, y=posicao.y, z=posicao.z}, arr = {x=posicao.x-4, y=posicao.y, z=posicao.z}})
-		addEvent(gust, 1500, {cid = cid, eee = 123, ar = {x=posicao.x-6, y=posicao.y, z=posicao.z}, arr = {x=posicao.x-5, y=posicao.y, z=posicao.z}})
-		end
-return TRUE
+		local posicao = getThingPos(pk)
+		if getCreatureLookDir(pk) == 0 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-2, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-3, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-4, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+1, y=posicao.y-5, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-2, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-3, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-4, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-5, z=posicao.z}, ef = 137, wave = ap1})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+0, y=posicao.y-1, z=posicao.z}, ef = 18, wave = ap2})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+0, y=posicao.y-2, z=posicao.z}, ef = 18, wave = ap2})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+0, y=posicao.y-3, z=posicao.z}, ef = 18, wave = ap2})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+0, y=posicao.y-4, z=posicao.z}, ef = 18, wave = ap2})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+0, y=posicao.y-5, z=posicao.z}, ef = 18, wave = ap2})
+		elseif getCreatureLookDir(pk) == 2 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+2, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+3, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+4, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+1, y=posicao.y+5, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+2, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+3, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+4, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+5, z=posicao.z}, ef = 137, wave = ap3})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+0, y=posicao.y+1, z=posicao.z}, ef = 18, wave = ap4})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+0, y=posicao.y+2, z=posicao.z}, ef = 18, wave = ap4})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+0, y=posicao.y+3, z=posicao.z}, ef = 18, wave = ap4})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+0, y=posicao.y+4, z=posicao.z}, ef = 18, wave = ap4})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+0, y=posicao.y+5, z=posicao.z}, ef = 18, wave = ap4})
+		elseif getCreatureLookDir(pk) == 1 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+2, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+3, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+4, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+5, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+6, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+2, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+3, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+4, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+5, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 1600, {pid =pk, ar = {x=posicao.x+6, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap5})
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x+2, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap6})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x+3, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap6})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x+4, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap6})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x+5, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap6})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x+6, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap6})
+		elseif getCreatureLookDir(pk) == 3 then
+			addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-2, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-3, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-4, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-5, y=posicao.y+1, z=posicao.z}, ef = 137, wave = ap7})
+	        addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-2, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-3, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-4, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap7})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-5, y=posicao.y-1, z=posicao.z}, ef = 137, wave = ap7})
+	        addEvent(sandattack, 0, {pid = pk, ar = {x=posicao.x-1, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap8})
+			addEvent(sandattack, 400, {pid = pk, ar = {x=posicao.x-2, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap8})
+			addEvent(sandattack, 800, {pid = pk, ar = {x=posicao.x-3, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap8})
+			addEvent(sandattack, 1200, {pid = pk, ar = {x=posicao.x-4, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap8})
+			addEvent(sandattack, 1600, {pid = pk, ar = {x=posicao.x-5, y=posicao.y-0, z=posicao.z}, ef = 18, wave = ap8})
+        end
+	return true;
 end

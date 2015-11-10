@@ -1,92 +1,22 @@
-local combat, areadano, dir, area = {}, {}, {[0] = {1}, [1] = {2}, [2] = {3}, [3] = {4}}, {
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-
-{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
-}
-
-	for i = 1, 4 do
-		table.insert(combat, createCombatObject())
-		table.insert(areadano, createCombatArea(area[i]))
-		setCombatParam(combat[i], COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-		setCombatParam(combat[i], COMBAT_PARAM_EFFECT,207)
-		setCombatArea(combat[i], createCombatArea(area[i]))
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		local function spark(params)
+			if isCreature(params.pid) then
+				if isCreature(params.pid) then
+					doSendDistanceShoot(getThingPos(params.pid), params.ownerpos, 40)
+					doAreaCombatHealth(pk, element, params.ownerpos, 0, -min, -max, 48)
+				end
+			end
 		end
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-num1 = 300 --- 1 dano
-num2 = 400 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-		local d = getCreatureLookDirection(cid)
-		doCombat(cid, combat[dir[d][1]], numberToVariant(cid)) 
-		doAreaCombatHealth(cid, ELETRICDAMAGE, getCreaturePosition(cid), areadano[dir[d][1]],  -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) 
-	return true
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-num1 = 600 --- 1 dano
-num2 = 800 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-num1 = 300 --- 1 dano
-num2 = 400 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-end
-		local d = getCreatureLookDirection(cid)
-		doCombat(cid, combat[dir[d][1]], numberToVariant(cid)) 
-		doAreaCombatHealth(cid, ELETRICDAMAGE, getCreaturePosition(cid), areadano[dir[d][1]],  -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) 
-	return true
+		for a = -1, 1 do
+			for b = -1, 1 do
+				ownerpos = getThingPos(pk)
+				ownerpos.x = ownerpos.x+a
+				ownerpos.y = ownerpos.y+b
+				addEvent(spark, math.abs(a)*350 + math.abs(b)*650, {pid = pk, ownerpos = ownerpos})
+			end
+		end		
+	return true;
 end

@@ -1,55 +1,23 @@
-local combat, areadano, effect, area, dir = {}, {}, {74, 75, 76, 69, 70, 71, 77, 75, 78, 72, 70, 73}, {
-{ {2}, {1} }, { {2}, {0}, {1}, {1} }, { {2}, {0}, {0}, {0}, {1} },
-{ {1, 2} }, { {1, 1, 1, 0, 2} }, { {1, 0, 0, 0, 0, 2} },
-{ {1}, {2} }, { {1}, {1}, {0}, {2} }, { {1}, {0}, {0}, {0}, {2} },
-{ {2, 1} }, { {2, 0, 1, 1, 1} }, { {2, 0, 0, 0, 0, 1} }
-},
-{ [0] = {1, 3}, [1] = {4, 6}, [2] = {7, 9}, [3] = {10, 12} }
-for i = 1, 12 do
-	table.insert(combat, createCombatObject())
-	table.insert(areadano, createCombatArea(area[i]))
-	setCombatParam(combat[i], COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-	setCombatParam(combat[i], COMBAT_PARAM_EFFECT, effect[i])
-	setCombatArea(combat[i], createCombatArea(area[i]))
-end
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-num1 = 900 --- 1 dano
-num2 = 1300 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-
-	local d = getCreatureLookDirection(cid)
-	for i = dir[d][1], dir[d][2] do 
-	doCombat(cid, combat[i], numberToVariant(cid))
-	doAreaCombatHealth(cid, WATERDAMAGE, getCreaturePosition(cid), areadano[i],  -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) 
-	end
-	return true
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-num1 = 900 --- 1 dano
-num2 = 1300 --- 2 dano
-num3 = 5   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-num1 = 900 --- 1 dano
-num2 = 1300 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-end
-
-	local d = getCreatureLookDirection(cid)
-	for i = dir[d][1], dir[d][2] do 
-	doCombat(cid, combat[i], numberToVariant(cid))
-	doAreaCombatHealth(cid, WATERDAMAGE, getCreaturePosition(cid), areadano[i],  -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) 
-	end
-	return true
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		if getCreatureLookDir(pk) == 0 then
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg1n, -min, -max, 74)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg2n, -min, -max, 75)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg3n, -min, -max, 76)
+		elseif getCreatureLookDir(pk) == 2 then
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg1s, -min, -max, 77)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg2s, -min, -max, 75)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg3s, -min, -max, 78)
+		elseif getCreatureLookDir(pk) == 1 then
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg1e, -min, -max, 69)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg2e, -min, -max, 70)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg3e, -min, -max, 71)
+		elseif getCreatureLookDir(pk) == 3 then
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg1w, -min, -max, 72)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg2w, -min, -max, 70)
+			doAreaCombatHealth(pk, element, getThingPos(pk), wg3w, -min, -max, 73)
+		end
+	return true;
 end

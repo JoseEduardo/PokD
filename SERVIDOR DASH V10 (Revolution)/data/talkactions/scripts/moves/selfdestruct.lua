@@ -1,28 +1,11 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, NORMALDAMAGE)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 6)
-
-
-arr = {
-	{0, 0, 1, 1, 1, 0, 0},
-	{0, 1, 1, 1, 1, 1, 0},
-	{1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 1, 3, 1, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1},
-	{0, 1, 1, 1, 1, 1, 0},
-	{0, 0, 1, 1, 1, 0, 0}
-}
-local area = createCombatArea(arr)
-setCombatArea(combat, area)
-
-function onSay(cid)
-level = getDamagePoke(cid, FALSE)
-num1 = 10500 --- 1 dano
-num2 = 10800 --- 2 dano
-num3 = 300   --- bonus
-num4 = 255 --- last
-
-    doCreatureAddHealth(cid, -150000)
-	return doCombat(cid, combat, numberToVariant(cid)) and
-	doAreaCombatHealth(cid, NORMALDAMAGE, getCreaturePosition(cid), area,  -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		addEvent(doCreatureAddHealth, 250, pk, -getCreatureHealth(pk))
+		doAreaCombatHealth(pk, element, getThingPos(pk), destruct1, -min, -max, 5)
+		addEvent(doAreaCombatHealth, 150, pk, element, getThingPos(pk), destruct2, -(min*0.7), -(max*0.8), 5)
+		addEvent(doAreaCombatHealth, 250, pk, element, getThingPos(pk), destruct3, -(min*0.4), -(max*0.5), 5)
+		setPlayerStorageValue(pk, 33, 1)
+	return true;
 end

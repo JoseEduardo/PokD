@@ -1,11 +1,30 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_HEALING)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 12)
-setCombatParam(combat, COMBAT_PARAM_AGGRESSIVE, false)
-setCombatParam(combat, COMBAT_PARAM_DISPEL, CONDITION_PARALYZE)
-setCombatParam(combat, COMBAT_PARAM_DISPEL, CONDITION_DRUNK)
-
-function onSay(cid)
-	return doCombat(cid, combat, numberToVariant(cid)) and
-		doCreatureAddHealth(cid, math.random(0, 0))
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		doSendMagicEffect(getThingPos(pk), 37)
+		setPlayerStorageValue(pk, 254, 1)
+		local function quiet(params)
+			if isCreature(params.pid) then
+				if isCreature(params.pid) then
+					if getPlayerStorageValue(params.pid, 254) >= 1 then
+						doSendMagicEffect(getThingPos(params.pid), 220)
+					end
+				end
+			end
+		end
+		local function desc(params)
+			if isCreature(params.pid) then
+				if isCreature(params.pid) then
+					if getPlayerStorageValue(params.pid, 254) >= 1 then
+						setPlayerStorageValue(params.pid, 254, 0)
+					end
+				end
+			end
+		end
+		for calm = 1, 12 do
+			addEvent(quiet, calm*500, {pid = pk})
+		end
+		addEvent(desc, 12*500, {pid = pk})
+	return true;
 end

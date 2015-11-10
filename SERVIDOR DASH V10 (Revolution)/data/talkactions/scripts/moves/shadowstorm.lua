@@ -1,51 +1,23 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE,COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 140)
-
-arr = {
-{0, 0, 0, 1 ,1 ,1 ,0 ,0},
-{0, 0, 1, 1 ,1 ,1 ,1 ,0},
-{0, 1, 1, 1 ,1 ,1 ,1 ,1},
-{0, 1, 1, 1 ,2 ,1 ,1 ,1},
-{0, 1, 1, 1 ,1 ,1 ,1 ,1},
-{0, 0, 1, 1 ,1 ,1 ,1 ,0},
-{0, 0, 0, 1 ,1 ,1 ,0 ,0},
-}
-
-local area = createCombatArea(arr)
-setCombatArea(combat, area)
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = GHOSTDAMAGE
-num1 = 900 --- 1 dano
-num2 = 1200 --- 2 dano
-num3 = 5   --- bonus
-num4 = 255 --- last
-    return doCombat(cid, combat, numberToVariant(cid)) and
-	doAreaCombatHealth(cid, GHOSTDAMAGE, getCreaturePosition(cid), area, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-element = GHOSTDAMAGE
-num1 = 1000 --- 1 dano
-num2 = 1800 --- 2 dano
-num3 = 6   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-element = GHOSTDAMAGE
-num1 = 900 --- 1 dano
-num2 = 1200 --- 2 dano
-num3 = 5   --- bonus
-num4 = 255 --- last
-end
-    return doCombat(cid, combat, numberToVariant(cid)) and
-	doAreaCombatHealth(cid, GHOSTDAMAGE, getCreaturePosition(cid), area, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		posit = getThingPos(pk)
+		local function storm(params)
+			if isCreature(params.pid) then
+				doAreaCombatHealth(params.pid, params.el, posit, params.ar, -min, -max, params.ef)
+			else
+			end
+		end
+		addEvent(storm, 0, {pid = pk, el = element, ar = ws1, ef = 140})
+		addEvent(storm, 500, {pid = pk, el = element, ar = ws2, ef = 140})
+		addEvent(storm, 1000, {pid = pk, el = element, ar = ws3, ef = 140})
+		addEvent(storm, 1500, {pid = pk, el = element, ar = ws4, ef = 140})
+		addEvent(storm, 150, {pid = pk, el = null, ar = ws5, ef = 208})
+		addEvent(storm, 450, {pid = pk, el = null, ar = ws5, ef = 208})
+		addEvent(storm, 750, {pid = pk, el = null, ar = ws5, ef = 208})
+		addEvent(storm, 900, {pid = pk, el = null, ar = ws5, ef = 208})
+		addEvent(storm, 1250, {pid = pk, el = null, ar = ws5, ef = 208})
+		addEvent(storm, 1550, {pid = pk, el = null, ar = ws5, ef = 208})
+	return true;
 end

@@ -1,42 +1,30 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 84)
-setCombatParam(combat, COMBAT_PARAM_DISTANCEEFFECT, 6)
-setCombatFormula(combat, COMBAT_FORMULA_LEVELMAGIC, -1, -10, -1, -20, 5, 5, 1.4, 2.1)
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = GRASSDAMAGE
-num1 = 200 --- 1 dano
-num2 = 300 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-	return doCombat(cid, combat, numberToVariant(getCreatureTarget(cid))) and
-doTargetCombatHealth(cid, getCreatureTarget(cid), element, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) and
-	doCreatureAddHealth(cid, math.random(100, 150))
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20078) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, FALSE)
-element = GRASSDAMAGE
-num1 = 600 --- 1 dano
-num2 = 800 --- 2 dano
-num3 = 3   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, TRUE)
-element = GRASSDAMAGE
-num1 = 200 --- 1 dano
-num2 = 300 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-end
-	return doCombat(cid, combat, numberToVariant(getCreatureTarget(cid))) and
-doTargetCombatHealth(cid, getCreatureTarget(cid), element, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) and
-	doCreatureAddHealth(cid, math.random(100, 150))
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		doSendDistanceShoot(getThingPos(pk), getThingPos(getMasterTarget(pk)), 5)
+		local alvo = getMasterTarget(pk)
+		local leecher = pk
+		local function suck(params)
+			if isCreature(params.pid) then
+				if isCreature(params.alvo) then
+					if pk == leecher then
+						doSendMagicEffect(getThingPos(params.pid), 14)
+						local life = getCreatureHealth(alvo)
+						doAreaCombatHealth(params.pid, element, getThingPos(params.alvo), 0, -min, -max, 45)
+						local newlife = life - getCreatureHealth(alvo)
+						if newlife >= 1 then
+							doCreatureAddHealth(params.pid, newlife)
+							doSendAnimatedText(getThingPos(params.pid), "+"..newlife.."", 35)
+						end
+					end
+				end
+			end
+		end
+		addEvent(suck, 2000, {pid = pk, alvo = alvo})
+		addEvent(suck, 4000, {pid = pk, alvo = alvo})
+		addEvent(suck, 6000, {pid = pk, alvo = alvo})
+		addEvent(suck, 8000, {pid = pk, alvo = alvo})
+		addEvent(suck, 10000, {pid = pk, alvo = alvo})
+	return true;
 end

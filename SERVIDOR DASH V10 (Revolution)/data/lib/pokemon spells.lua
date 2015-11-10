@@ -10,20 +10,6 @@ function getMasterTarget(cid)
 end
 
 function doPokemonUseSpell(pk, spell, min, max, element)
-
-	local SPELL_OUT = true
-	local owner = getCreatureMaster(pk)
-	local snorlax = {lookType = 258}
-	local scyther = {lookType = 15}
-	local golem = {lookType = 288}
-	local sandslash = {lookType = 285}
-	local sandshrew = {lookType = 284}
-	local electrode = {lookType = 286}
-	local voltorb = {lookType = 287}
-	local miltank = {lookType = 675}
-	local donphan = {lookType = 664}
-	local hrew = {lookType = 284}
-	
 	if not isSummon(pk) then
 	    if isPlayer(getCreatureTarget(pk)) then
 			lvl = ((getPlayerLevel(getCreatureTarget(pk)) + getPokemonLevel(pk)) / 1.5)
@@ -41,7 +27,13 @@ function doPokemonUseSpell(pk, spell, min, max, element)
 		max = max * 2
 		setPlayerStorageValue(pk, 253, -1)
 	end
-	
+
+	setPlayerStorageValue(pk, 9921, min) -- min
+	setPlayerStorageValue(pk, 9922, max) -- max
+	setPlayerStorageValue(pk, 9923, element) -- element
+	doCreatureExecuteTalkAction(pk, TalkSpells[spell])
+
+--[[
 	if spell == "Rock Throw" then
 		doSendDistanceShoot(getThingPos(pk), getThingPos(getMasterTarget(pk)), 11)
 		doAreaCombatHealth(pk, element, getThingPos(getMasterTarget(pk)), 0, -min, -max, 3)
@@ -2961,9 +2953,10 @@ function doPokemonUseSpell(pk, spell, min, max, element)
 	    SPELL_OUT = false
 	    print("a spell "..spell.." nao existe!")
 	end
-	
+]]	
 	if SPELL_OUT then
 		doCreatureSay(pk, ""..string.upper(spell).."!", TALKTYPE_MONSTER)
 	end
+
 return true
 end

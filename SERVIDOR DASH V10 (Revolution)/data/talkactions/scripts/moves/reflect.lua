@@ -1,10 +1,8 @@
-function stop(parameters)
-    setCreatureConditionValue(parameters.cid, IDREFLECT, 0)
-    setPlayerStorageValue(parameters.master, 21099, 0)
-end
-
-function onSay(cid, words, param, channel)
-     setCreatureConditionValue(cid, IDREFLECT, 1)
-     parameters = {cid=cid, master = master}
-     addEvent(stop, 5000, parameters)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		doSendMagicEffect(getThingPos(pk), 135)
+		setPlayerStorageValue(pk, 34, 1)
+	return true;
 end

@@ -1,85 +1,52 @@
-local combat1 = createCombatObject()
-setCombatParam(combat1, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat1, COMBAT_PARAM_EFFECT, 22)
-setCombatParam(combat1, COMBAT_PARAM_DISTANCEEFFECT, 24)
-setCombatFormula(combat1, COMBAT_FORMULA_LEVELMAGIC, -2.5, 0, -3.0, 0)
-
-local combat2 = createCombatObject()
-setCombatParam(combat2, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat2, COMBAT_PARAM_EFFECT, 22)
-setCombatParam(combat2, COMBAT_PARAM_DISTANCEEFFECT, 24)
-setCombatFormula(combat2, COMBAT_FORMULA_LEVELMAGIC, -2.5, 0, -3.0, 0)
-
-local combat3 = createCombatObject()
-setCombatParam(combat3, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat3, COMBAT_PARAM_EFFECT, 22)
-setCombatParam(combat3, COMBAT_PARAM_DISTANCEEFFECT, 24)
-setCombatFormula(combat3, COMBAT_FORMULA_LEVELMAGIC, -2.5, 0, -3.0, 0)
-
-
-
-local function onCastSpell1(parameters)
-if not isCreature(getCreatureTarget(parameters.cid)) then
-return true
-end
-    doCombat(parameters.cid, parameters.combat1, parameters.var)
-	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), NORMALDAMAGE,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
-
-local function onCastSpell2(parameters)
-if not isCreature(getCreatureTarget(parameters.cid)) then
-return true
-end
-    doCombat(parameters.cid, parameters.combat2, parameters.var)
-	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), NORMALDAMAGE,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
-
-local function onCastSpell3(parameters)
-if not isCreature(getCreatureTarget(parameters.cid)) then
-return true
-end
-    doCombat(parameters.cid, parameters.combat3, parameters.var)
-	doTargetCombatHealth(parameters.cid, getCreatureTarget(parameters.cid), NORMALDAMAGE,  -((parameters.num1)+(parameters.level*(parameters.num3))), -((parameters.num2)+(parameters.level*(parameters.num3))), 255)
-end
-
-
-
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-num1 = 80 --- 1 dano
-num2 = 150 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-
-local parameters = { cid = cid, level = level, num1 = num1, num2 = num2, num3 = num3, num4 =num4, var = numberToVariant(getCreatureTarget(cid)), combat1 = combat1, combat2 = combat2, combat3 = combat3, }
-addEvent(onCastSpell1, 0, parameters)    
-addEvent(onCastSpell2, 300, parameters)       
-addEvent(onCastSpell3, 600, parameters)
-return true
-end
-
-local master = getCreatureMaster(cid)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if getCreatureStorage(master, 20098) == 1 or isInArray(tShiny, b) then
-level = getDamagePoke(cid, TRUE)
-num1 = 160 --- 1 dano
-num2 = 300 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-setPlayerStorageValue(master, 20098, 0)
-else
-level = getDamagePoke(cid, FALSE)
-num1 = 80 --- 1 dano
-num2 = 150 --- 2 dano
-num3 = 2   --- bonus
-num4 = 255 --- last
-end
-
-local parameters = { cid = cid, level = level, num1 = num1, num2 = num2, num3 = num3, num4 =num4, var = numberToVariant(getCreatureTarget(cid)), combat1 = combat1, combat2 = combat2, combat3 = combat3, }
-addEvent(onCastSpell1, 0, parameters)    
-addEvent(onCastSpell2, 300, parameters)       
-addEvent(onCastSpell3, 600, parameters)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		local t = getMasterTarget(pk)
+		setPlayerStorageValue(t, 5, 1)
+		local function confd(params)
+			if isCreature(params.t) then
+				local spdc = getCreatureSpeed(params.t)
+				if getCreatureLookDir(params.t) == 0 then
+					confs = math.random(1,3)
+				elseif getCreatureLookDir(params.t) == 1 then
+					confurandom = math.random(1,99)
+					if confurandom <= 33 then
+						confs = 0
+					elseif confurandom >= 67 then
+						confs = 2
+					else
+						confs = 3
+					end
+				elseif getCreatureLookDir(params.t) == 2 then
+					confurandom = math.random(1,99)
+					if confurandom <= 33 then
+						confs = 3
+					elseif confurandom >= 67 then
+						confs = 0
+					else
+						confs = 1
+					end
+				elseif getCreatureLookDir(params.t) == 3 then
+					confs = math.random(0,2)
+				end
+				doPushCreature(params.t, confs, 1, 0)
+				doSendMagicEffect(getThingPos(params.t), 31)
+			end
+		end
+		local function nonc(params)
+			if isCreature(params.t) then
+				doChangeSpeed(params.t, -getCreatureSpeed(params.t))
+				doChangeSpeed(params.t, getCreatureBaseSpeed(params.t))
+				setPlayerStorageValue(params.t, 5, -1)
+			end
+		end
+		doSendDistanceShoot(getThingPos(pk), getThingPos(getMasterTarget(pk)), 32)
+		doChangeSpeed(t, -( getCreatureSpeed(t)/3))
+		doSendMagicEffect(getThingPos(t), 31)
+		for i = 1, math.random(6,7) do
+			addEvent(confd, 1000*i, {pid = pk, t = t})
+		end
+		addEvent(nonc, 7100, {pid = pk, t = t})
+	return true;
 end

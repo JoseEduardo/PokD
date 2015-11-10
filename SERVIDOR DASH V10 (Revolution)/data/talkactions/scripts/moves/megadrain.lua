@@ -1,25 +1,25 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, 8)
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
 
-function onSay(cid)
-if not isSummon(cid) then
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 300 --- 1 dano
-num2 = 400 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-else
-level = getDamagePoke(cid, FALSE)
-element = COMBAT_PHYSICALDAMAGE
-num1 = 300 --- 1 dano
-num2 = 400 --- 2 dano
-num3 = 4   --- bonus
-num4 = 255 --- last
-end
+		local uid = checkAreaUid(getThingPos(pk), checkMega, 1, 1)
+		for _,pid in pairs(uid) do
+			if isCreature(pk) and isCreature(pid) and pid ~= pk then
+				if isPlayer(pid) and #getCreatureSummons(pid) >= 1 then return false end
+		
+				local life = getCreatureHealth(pid)
 
-	return doCombat(cid, combat, numberToVariant(getCreatureTarget(cid))) and
-doTargetCombatHealth(cid, getCreatureTarget(cid), element, -((num1)+(level*(num3))), -((num2)+(level*(num3))), num4) and
-		doCreatureAddHealth(cid, math.random(100, 150))
+				doAreaCombatHealth(pk, GRASSDAMAGE, getThingPos(pid), 0, -min, -max, 14)
+
+				local newlife = life - getCreatureHealth(pid)
+
+				doSendMagicEffect(getThingPos(pk), 14)
+				if newlife >= 1 then
+					doCreatureAddHealth(pk, newlife)
+					doSendAnimatedText(getThingPos(pk), "+"..newlife.."", 32)
+				end  
+			end
+		end
+	return true;
 end

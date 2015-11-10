@@ -1,48 +1,34 @@
-function removve(parameters)
-if getCreatureSummons(parameters.master) == 1 then
-return true
+function onSay(pk)
+  min = getPlayerStorageValue(pk, 9921) -- min
+  max = getPlayerStorageValue(pk, 9922) -- max
+  element = getPlayerStorageValue(pk, 9923) -- element
+		if getCreatureName(pk) == "Scyther" then
+			doSetCreatureOutfit(pk, scyther, 8300)
+			doChangeSpeed(pk, 145)
+		end
+		setPlayerStorageValue(pk, 4, 1)
+		local function team(params)
+			if isCreature(params.pid) then
+				if isCreature(params.pid) then
+					if getCreatureCondition(params.pid, CONDITION_OUTFIT) == true then
+						doSendAnimatedText(getThingPos(params.pid), "+"..max.."", 15)
+					end
+				end
+			end
+		end
+		for r = 1, 8 do
+		    addEvent(team, 1000*r, {pid = pk})
+		end
+		local function stopteam(params)
+			if isCreature(params.pid) then
+				if isCreature(params.pid) then
+					doChangeSpeed(params.pid, -145)
+					if getPlayerStorageValue(params.pid, 4) >= 1 then
+						setPlayerStorageValue(params.pid, 4, 0)
+					end
+				end
+			end
+		end
+		addEvent(stopteam, 8300, {pid = pk})
+	return true;
 end
- doSendMagicEffect(getCreaturePosition(parameters.creature), 211)
- doRemoveCreature(parameters.creature)
-end
-
-function onSay(cid, fromPos, toPos)
-local Look = getPlayerLookPos(cid)
-
-if not isSummon(cid) then
-level = math.random(70, 120)
-creature = doSummonCreature("scytherp", getCreaturePosition(cid))
-  doConvinceCreature(master, creature)
-  max = getCreatureMaxHealth(creature)
-  registerCreatureEvent(creature, "Deead")
-  setCreatureMaxHealth(creature, (max+level*5))
-  doCreatureSetLookDir(creature, Look)
-  doSendMagicEffect(getCreaturePosition(creature), 211)
-  parameters = {cid=cid, creature = creature, master = master}
-  addEvent(removve, 5000, parameters)  
-return true
-end
-
-local master = getCreatureMaster(cid)
-local level = getPlayerLevel(master)
-local a = getPlayerSlotItem(master, 8)
-local b = getItemAttribute(a.uid, "poke"):sub(9, findLetter(getItemAttribute(a.uid, "poke"), "'")-1)
-
-if isInArray(tShiny, b) then
-creature = doSummonCreature("shiny scytherp", getCreaturePosition(cid))
-else
-creature = doSummonCreature("scytherp", getCreaturePosition(cid))
-end
-  doConvinceCreature(master, creature)
-max = getCreatureMaxHealth(creature)
-  registerCreatureEvent(creature, "Deead")
-  setCreatureMaxHealth(creature, (max+level*5))
-  doCreatureSetLookDir(creature, Look)
-  doSendMagicEffect(getCreaturePosition(creature), 211)
-  parameters = {cid=cid, creature = creature, master = master}
-  addEvent(removve, 5000, parameters)  
-
-
-end
-
-                  
