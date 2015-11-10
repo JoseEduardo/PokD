@@ -18,7 +18,7 @@ function onSay(pk)
 				doAreaCombatHealth(pk, element, getThingPos(pk), wingdw, -min, -max, CONST_ME_NONE)
 			end
         end
-		addEvent(attaque, 0, {owner = owner})
-		addEvent(attaque, 500, {owner = owner})
+		addEvent(attaque, 0, {getCreatureMaster(pk) = getCreatureMaster(pk)})
+		addEvent(attaque, 500, {getCreatureMaster(pk) = getCreatureMaster(pk)})
 	return true;
 end

@@ -2,7 +2,7 @@ function onSay(pk)
   min = getPlayerStorageValue(pk, 9921) -- min
   max = getPlayerStorageValue(pk, 9922) -- max
   element = getPlayerStorageValue(pk, 9923) -- element
-		doAreaCombatHealth(owner, element, getThingPos(getMasterTarget(pk)), 0, -min, -max, 112)
+		doAreaCombatHealth(getCreatureMaster(pk), element, getThingPos(getMasterTarget(pk)), 0, -min, -max, 112)
 		local function punch(params)
 			if isMonster(getMasterTarget(params.pid)) then
 				if isCreature(params.pid) then

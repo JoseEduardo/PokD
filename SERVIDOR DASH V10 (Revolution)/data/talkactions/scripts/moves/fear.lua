@@ -44,8 +44,8 @@ function onSay(pk)
         doChangeSpeed(t, -( getCreatureSpeed(t)/3))
         doSendMagicEffect(getThingPos(t), 214)
         for i = 1, math.random(6,7) do
-            addEvent(confused, 1000*i, {owner = owner, t = t})
+            addEvent(confused, 1000*i, {getCreatureMaster(pk) = getCreatureMaster(pk), t = t})
         end
-        addEvent(nonc, 7100, {owner - owner, t = t})
+        addEvent(nonc, 7100, {getCreatureMaster(pk) - getCreatureMaster(pk), t = t})
 	return true;
 end

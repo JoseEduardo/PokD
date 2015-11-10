@@ -8,7 +8,7 @@ function onSay(pk)
             if isCreature(params.pid) then
                 if isCreature(getMasterTarget(params.pid)) then
 					if getMasterTarget(params.pid) == params.hitalvo then
-						doAreaCombatHealth(params.pid, NORMALDAMAGE, getThingPos(getCreatureTarget(params.owner)), 0, -min, -max, 42)
+						doAreaCombatHealth(params.pid, NORMALDAMAGE, getThingPos(getCreatureTarget(params.getCreatureMaster(pk))), 0, -min, -max, 42)
 					end
                 end
             end

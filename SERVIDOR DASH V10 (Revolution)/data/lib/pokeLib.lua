@@ -25,7 +25,6 @@ heart = 2289
 ice = 2290
 
 SPELL_OUT = true
-owner = getCreatureMaster(pk)
 
 TalkSpells = {
 ["Headbutt"] = "headbutt",
