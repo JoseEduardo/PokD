@@ -115,7 +115,6 @@
 	<talkaction words="healera" access="5" script="moves/healera.lua"/>
 	<talkaction words="agility" access="5" script="moves/agility.lua"/>
 	<talkaction words="stringshot" access="5" script="moves/stringshot.lua"/>
-	<talkaction words="aowner" access="5" script="moves/aowner.lua"/>
 	<talkaction words="watergun" access="5" script="moves/watergun.lua"/>
 	<talkaction words="slam" access="5" script="moves/slam.lua"/>
 	<talkaction words="rapidhit" access="5" script="moves/rapidhit.lua"/>
@@ -150,7 +149,6 @@
 	<talkaction words="furyattack" access="5" script="moves/furyattack.lua"/>
 	<talkaction words="peck" access="5" script="moves/peck.lua"/>
 	<talkaction words="vinewhip" access="5" script="moves/vinewhip.lua"/>
-	<talkaction words="psywave" access="5" script="moves/psywave.lua"/>
 	<talkaction words="dizzypunch" access="5" script="moves/dizzypunch.lua"/>
 	<talkaction words="leechseed" access="5" script="moves/leechseed.lua"/>
 	<talkaction words="psypulse" access="5" script="moves/psypulse.lua"/>
@@ -172,7 +170,6 @@
 	<talkaction words="restore" access="5" script="moves/restore.lua"/>
 	<talkaction words="poisonsting" access="5" script="moves/poisonsting.lua"/>
 	<talkaction words="ember" access="5" script="moves/ember.lua"/>
-	<talkaction words="thundershock" access="5" script="moves/thundershock.lua"/>
 	<talkaction words="drillpeck" access="5" script="moves/drillpeck.lua"/>
 	<talkaction words="firefang" access="5" script="moves/firefang.lua"/>
 	<talkaction words="metronome" access="5" script="moves/metronome.lua"/>
@@ -187,12 +184,10 @@
 	<talkaction words="flamethrower" access="5" script="moves/flamethrower.lua"/>
 	<talkaction words="icewave" access="5" script="moves/icewave.lua"/>
 	<talkaction words="firewave" access="5" script="moves/firewave.lua"/>
-	<talkaction words="bubblebeam" access="5" script="moves/bubblebeam.lua"/>
 	<talkaction words="gust" access="5" script="moves/gust.lua"/>
 	<talkaction words="harden" access="5" script="moves/harden.lua"/>
 	<talkaction words="clamp" access="5" script="moves/clamp.lua"/>
 	<talkaction words="sing" access="5" script="moves/sing.lua"/>
-	<talkaction words="thunderbolt" access="5" script="moves/thunderbolt.lua"/>
 	<talkaction words="karatechop" access="5" script="moves/karatechop.lua"/>
 	<talkaction words="boneclub" access="5" script="moves/boneclub.lua"/>
 	<talkaction words="whirlwind" access="5" script="moves/whirlwind.lua"/>
@@ -220,7 +215,6 @@
 	<talkaction words="sleeppowder" access="5" script="moves/sleeppowder.lua"/>
 	<talkaction words="supervines" access="5" script="moves/supervines.lua"/>
 	<talkaction words="toxicneedle" access="5" script="moves/toxicneedle.lua"/>
-	<talkaction words="shadowstorm" access="5" script="moves/shadowstorm.lua"/>
 	<talkaction words="invisible" access="5" script="moves/invisible.lua"/>
 	<talkaction words="icepunch" access="5" script="moves/icepunch.lua"/>
 	<talkaction words="psyusion" access="5" script="moves/psyusion.lua"/>
@@ -300,8 +294,6 @@
 	<talkaction words="rest" access="5" script="moves/rest.lua"/>
 	<talkaction words="futuresight" access="5" script="moves/futuresight.lua"/>
 	<talkaction words="wardog" access="5" script="moves/wardog.lua"/>
-	<talkaction words="psychicmew" access="5" script="moves/psychicmew.lua"/>
-	<talkaction words="psychicmewtwo" access="5" script="moves/psychicmewtwo.lua"/>
 	<talkaction words="shadowstorm" access="5" script="moves/shadowstorm.lua"/>
 	<talkaction words="psychicmew" access="5" script="moves/psychicmew.lua"/>
 	<talkaction words="psychicmewtwo" access="5" script="moves/psychicmewtwo.lua"/>
