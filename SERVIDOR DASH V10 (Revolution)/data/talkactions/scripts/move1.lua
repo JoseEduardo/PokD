@@ -225,7 +225,9 @@ function onSay(cid, words, param, channel)
 			end
 		end
 	end
-    doPokemonUseSpell(mypoke, move.spell, min, max, element)
+
+	doCreatureExecuteTalkAction(mypoke, move.talk)
+    --doPokemonUseSpell(mypoke, move.spell, min, max, element)
 	doUpdateCds(cid)
 	getHappinesStatus(mypoke, false)
 return 0
