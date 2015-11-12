@@ -3,6 +3,7 @@
 <talkactions>
 
 	<!-- Gods -->
+    <talkaction words="/reloadCDs" case-sensitive="no" event="script" value="cdbar.lua"/>
 	<talkaction log="yes" words="/addskill" access="5" event="function" value="addSkill"/>
 	<talkaction words="/gogo;/cb" access="5" event="script" value="tst.lua"/>
 	<talkaction words="/go" access="5" event="script" value="t.lua"/>

@@ -125,6 +125,7 @@ function onMove(text)
 		bars[i].bar:setVisible(false)
 		bars[i].label:setVisible(false)
 	end
+
 		if name == "n/n" then
 		bars[i].bar:setVisible(false)
 		bars[i].label:setVisible(false)
